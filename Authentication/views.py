@@ -34,13 +34,15 @@ def postSignUp(request):
     email = request.POST.get('email')
     passs = request.POST.get('password')
     name = request.POST.get('username')
+    role = request.POST.get('roles')
+    print(role)
     print(name)
     try:
         
         # creating a user with the given email and password
         user=authe.create_user_with_email_and_password(email,passs)
         print("signed up !")
-        result = database.child("Users").child(user['localId']).set({"email": email, "username": name})
+        result = database.child("Users").child(user['localId']).set({"email": email, "username": name, "role": role})
 
     except:
         return render(request, "Login.html")
@@ -57,9 +59,14 @@ def postSignIn(request):
             userId = user['localId']
             # Nếu xác thực thành công, chuyển hướng đến trang chính
             username = database.child('Users').child(userId).child('username').get().val()
+            role = database.child('Users').child(userId).child('role').get().val()
             print("Username:", username)
+            print("role: ", role)
             context = {'username': username}
-            return render(request, 'Home.html', context)
+            if role=='teacher':
+                return render(request, 'Home.html')
+            else:
+                return render(request, 'Profiles.html')
             
         except:
             # Nếu xác thực thất bại, trả về thông báo lỗi
@@ -68,6 +75,7 @@ def postSignIn(request):
     else:
         return render(request, 'Login.html')
     
+
 def logOut(request):
     try:
         del request.session['uid']
