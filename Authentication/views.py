@@ -1,8 +1,9 @@
 from django.shortcuts import render
 import pyrebase
+
+
 # Create your views here.
-
-
+userId = ""
 config={
     "apiKey": "AIzaSyAq7-ziABaQCTxfeOlMIbv8jvfQk2B7lmQ",
     "authDomain": "pbl5-94125.firebaseapp.com",
@@ -17,16 +18,6 @@ firebase=pyrebase.initialize_app(config)
 authe = firebase.auth()
 database = firebase.database()
 
-def index(request):
-    name = database.child('Data').child('Name').get().val()
-    cl =  database.child('Data').child('Class').get().val()
-    phone = database.child('Data').child('Phone').get().val()
-    return render(request, 'index.html', {
-        "name": name,
-        "class": cl,
-        "phone": phone
-    })
-    
 def loginSignUp(request):
     return render(request, "Login.html")
 
@@ -42,11 +33,13 @@ def postSignUp(request):
         # creating a user with the given email and password
         user=authe.create_user_with_email_and_password(email,passs)
         print("signed up !")
-        result = database.child("Users").child(user['localId']).set({"email": email, "username": name, "role": role})
+        database.child("Users").child(user['localId']).set({"email": email, "username": name, "role": role})
 
     except:
+        print("Sign up failed, account exist")
         return render(request, "Login.html")
     return render(request,"Login.html")
+
 
 
 def postSignIn(request):
@@ -55,18 +48,20 @@ def postSignIn(request):
         password = request.POST['password']
         try:
             user = authe.sign_in_with_email_and_password(email, password)
-            print(user['localId'])
             userId = user['localId']
-            # Nếu xác thực thành công, chuyển hướng đến trang chính
+            request.session['uid'] = userId
             username = database.child('Users').child(userId).child('username').get().val()
             role = database.child('Users').child(userId).child('role').get().val()
             print("Username:", username)
             print("role: ", role)
-            context = {'username': username}
+            context = {'username': username, 'uid': userId}
+            print('Log in!')
+            # Nếu xác thực thành công, chuyển hướng đến trang chính
             if role=='teacher':
-                return render(request, 'Home.html')
+                return render(request, 'Home.html', context)
             else:
                 return render(request, 'Profiles.html')
+                
             
         except:
             # Nếu xác thực thất bại, trả về thông báo lỗi

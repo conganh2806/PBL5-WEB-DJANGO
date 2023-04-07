@@ -19,6 +19,8 @@ from Authentication import views
 from Setting import settingViews
 from Profile import profileViews
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.loginSignUp),
@@ -26,6 +28,8 @@ urlpatterns = [
     path('postsignUp/', views.postSignUp),
     path('setting/', settingViews.setting, name="setting"),
     path('profile/', profileViews.profile, name="profile"),
+    path('postUpdate/', settingViews.postUpdate),
+    
     path('', views.logOut, name="log"),
     
 ]
