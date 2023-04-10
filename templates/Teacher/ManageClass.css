@@ -39,7 +39,7 @@
 }
 .home--item__name{
     font-size: 14px;
-    color: #333;
+    color: #505050 !important;
     font-weight: 500;
     overflow: hidden;
     display: block;
@@ -64,6 +64,7 @@
     border-bottom-right-radius: 3px;
 }
 .home-info{
+    margin-top: 8px;
     display: flex;    
     align-items: center;
     margin-left: 12px;
