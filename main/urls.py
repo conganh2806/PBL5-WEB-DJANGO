@@ -32,4 +32,5 @@ urlpatterns = [
     
     path('', views.logOut, name="log"),
     
+    
 ]

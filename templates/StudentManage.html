@@ -1,0 +1,202 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Manage</title>
+    <!-- <link rel="stylesheet" href="./Coursemanager.css"> -->
+    <link rel="stylesheet" href="{% static 'css/StudentManageView.css' %}">
+    <link rel="stylesheet" href="{% static 'css/StudentManage.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+</head>
+
+<body>
+    <div class="container">
+        <nav class="menu">
+            <ul>
+                <li><a href="#" class="logo">
+                        <img src="../static/img/eduLogo.png">
+                        <span class="nav-item"></span>
+                    </a></li>
+                <li><a href="#">
+                        <i class="fas fa-menorah"></i>
+                        <span class="nav-item">Dashboard</span>
+                    </a></li>
+                <li><a href="#">
+                        <i class="fas fa-comment"></i>
+                        <span class="nav-item">Message</span>
+                    </a></li>
+                <li><a href="#">
+                        <i class="fas fa-database"></i>
+                        <span class="nav-item">Report</span>
+                    </a></li>
+                <li><a href="#">
+                        <i class="fas fa-chart-bar"></i>
+                        <span class="nav-item">Attendance</span>
+                    </a></li>
+                <li><a class="setting" id="setting" target="mainbody" onclick=" ">
+                        <i class="fas fa-cog"></i>
+                        <span class="nav-item">Setting</span>
+                    </a></li>
+
+                <li><a class="logout" id="logout" onclick="">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="nav-item">Log out</span>
+                    </a></li>
+            </ul>
+        </nav>
+
+        <div class="main">
+            <div class="main-top">
+                <div>
+                    <h1>Quản lý dự án</h1>
+                </div>
+                <div class="LookUp">
+                    <div class="icon">
+                        <input type="text" name="txtsearch" class="txt-search" placeholder="">
+                        <input type="submit" class="btn-search" value="" name="search">
+                    </div>
+                </div>
+            </div>
+            <div class="total">
+                <div class="contents">
+                    <div class="content1">
+                        <img src="../static/img/priod.png" alt="">
+                        <div>
+                            <h4>Members</h4>
+                            <h2>50</h2>
+                        </div>
+                    </div>
+                    <div class="content2">
+                        <img src="../static/img/members.png" alt="">
+                        <div>
+                            <h4>Priod</h4>
+                            <h2>50</h2>
+                        </div>
+                    </div>
+                    <div class="content3">
+                        <img src="../static/img/339218709_605869558256769_6245859736900178342_n.png" alt="">
+                        <div>
+                            <h4>Document</h4>
+                            <h2>5656</h2>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="student">
+                <div class="student-top">
+                    <h3>Members</h3>
+                    <button class="setting"><i class="fas fa-user-cog"></i></button>
+
+                </div>
+                <section class="table__body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th> Id Student <span class="icon-arrow"></span></th>
+                                <th> Name <span class="icon-arrow"></span></th>
+                                <th> Class <span class="icon-arrow"></span></th>
+                                <th> Email <span class="icon-arrow"></span></th>
+                                <th> Phone <span class="icon-arrow"></span></th>
+                                <th> Status <span class="icon-arrow"></span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td> 102200141 </td>
+                                <td> <img src="../static/img/members.png" alt="">Nguyễn Hoàng Ngọc</td>
+                                <td> 20TCLC_DT3 </td>
+                                <td> hoangngocnguyen02@gmail.com</td>
+
+                                <td> 0911420713</td>
+                                <td>
+                                    <strong>
+                                        <p class="statusbad">40%</p>
+                                    </strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> 102200144 </td>
+                                <td> <img src="../static/img/members.png" alt="">Võ Yến Nhi</td>
+                                <td> 20TCLC_DT3 </td>
+                                <td>yennhi@gmail.com</td>
+
+                                <td> 0911420713</td>
+                                <td>
+                                    <strong>
+                                        <p class="statusnormal">55%</p>
+                                    </strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> 102200158</td>
+                                <td> <img src="../static/img/members.png" alt="">Nguyễn Công Anh</td>
+                                <td> 20TCLC_DT3 </td>
+                                <td> nguyenconganh@gmail.com</td>
+
+                                <td> 0911420713</td>
+                                <td>
+                                    <strong>
+                                        <p class="statusgood">80%</p>
+                                    </strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> 102200167 </td>
+                                <td> <img src="../static/img/members.png" alt="">Võ Hữu Nam Trường</td>
+                                <td> 20TCLC_DT3 </td>
+                                <td> namtruong@gmail.com</td>
+
+                                <td> 0911420713</td>
+                                <td>
+                                    <strong>
+                                         <p class="statusgood">80%</p>
+                                    </strong>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </section>
+
+            </div>
+
+        </div>
+    </div>
+
+    <form class="setting_form" action="" method="post">
+        <div class="form-top">
+            <h2>Setting</h2>
+            <img class="close" src="../static/img/106830.png" alt="">
+        </div>
+        <div class="input-box">
+            <input class="MSSV" type="text" required>
+            <label>ID Student</label>
+
+        </div>
+        <div class="button">
+        <button type="submit" >Add new</button>
+        <button type="submit" >Delete</button></div>
+    </form>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".setting").click(function () {
+            $('.setting_form').toggleClass('active');
+        });
+    });
+    $(document).ready(function () {
+        $(".close").click(function () {
+            $('.setting_form').toggleClass('active');
+        });
+    });
+</script>
+
+</html>
