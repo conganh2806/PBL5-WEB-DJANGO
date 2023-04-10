@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    {% comment %} <link rel="stylesheet" href="./AddClass.css"> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/AddClass.css' %}">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="container">
+    <div class="title">Add Class</div>
+    <div class="content">
+      <form action="#">
+        <div class="class-details">
+          <div class="input-box">
+            <span class="details">Major</span>
+            <input type="text" placeholder="Enter major " required>
+          </div>
+          <div class="input-box">
+            <span class="details">Subject</span>
+            <input type="text" placeholder="Enter subject" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Class ID</span>
+            <input type="text" placeholder="Enter Class ID" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Room</span>
+            <input type="text" placeholder="Enter Room" required>
+          </div>
+          <div class="time-container">
+            <span class="details">Start Time</span>
+            <input type="datetime-local" id="start-time" name="start-time" value="dd" required>
+          </div>
+          <div class="time-container">
+            <span class="details">End Time</span>
+            <input type="datetime-local" id="end-time" name="end-time" required>
+          </div>
+        </div>
+        <div class="status-details">
+            <span class="status-title">Status</span>
+            <input type="radio" name="gender" id="dot-1">
+            <input type="radio" name="gender" id="dot-2">
+            <div class="category">
+                <label for="dot-1">
+                    <span class="dot one"></span>
+                    <span class="status">Online</span>
+                </label>
+                <label for="dot-2">
+                    <span class="dot two"></span>
+                    <span class="status">Offline</span>
+                </label>
+            </div>
+        </div>
+        <div class="button">
+          <input type="submit" value="Register Class">
+        </div>
+      </form>
+    </div>
+  </div>
+  <script>
+        var startDatetimeInput = document.getElementById("start-time");
+        var endDatetimeInput = document.getElementById("end-time");
+        startDatetimeInput.addEventListener("change", function() {
+            var startDatetime = new Date(startDatetimeInput.value);
+            // Cập nhật giá trị ngày giờ kết thúc nếu ngày giờ bắt đầu lớn hơn ngày giờ kết thúc
+            if (startDatetime > new Date(endDatetimeInput.value)) {
+                endDatetimeInput.value = startDatetimeInput.value;
+            }
+        });
+        endDatetimeInput.addEventListener("change", function() {
+            var endDatetime = new Date(endDatetimeInput.value);
+            // Cập nhật giá trị ngày giờ bắt đầu nếu ngày giờ kết thúc nhỏ hơn ngày giờ bắt đầu
+            if (endDatetime < new Date(startDatetimeInput.value)) {
+                startDatetimeInput.value = endDatetimeInput.value;
+            }
+        });
+  </script>
+
+</body>
+</html>
