@@ -10,7 +10,6 @@
     transition: transform linear 0.1s;
     will-change: transform;
 }
-
 .home--item:hover{
     transform: translateY(-2px);
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; 
@@ -40,7 +39,7 @@
 }
 .home--item__name{
     font-size: 14px;
-    color: #333;
+    color: #505050 !important;
     font-weight: 500;
     overflow: hidden;
     display: block;
@@ -65,6 +64,7 @@
     border-bottom-right-radius: 3px;
 }
 .home-info{
+    margin-top: 8px;
     display: flex;    
     align-items: center;
     margin-left: 12px;
@@ -104,9 +104,6 @@
     background-color: #fff;
     border-top-right-radius: 2px;
 }
-
-
-
 .home--item__sale-off-percent {
     color: #ccc;
     font-weight: 600;
@@ -125,7 +122,6 @@
     top: 2px;
     font-weight: 600;
 }
-
 .custom-btn {
     margin-left: 17px;
     margin-bottom: 10px;
@@ -160,8 +156,6 @@
       inset -4px -4px 6px 0 rgba(255,255,255,.2),
       inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
   }
-  
-
 .pagination{
     display: flex;
     justify-content: center;
@@ -170,14 +164,14 @@
 }
 .home-pagination{
     
-    margin: 40px 0 32px 0;
+    margin: 36px 0 32px 0;
 }
 .pagination-item{
     font-size: 16px;
     list-style: none;
-    padding: 12px 20px;
+    padding: 10px 18px;
     color: #939393;
-    margin: 0 16px;
+    margin: 0 10px;
     font-weight: 500;
     cursor: pointer;
 }
@@ -191,7 +185,6 @@
     text-align: center;
     border-radius: 2px;
 }
-
 .pagination-item--active{
     color: #fff;
     background-color: #34AF6D ;
@@ -200,8 +193,6 @@
 .icon-footer{
     font-size: 24px !important;
 }
-
-/* variables */
 :root {
     --background-color: #f5f6fa;
     --text: #9c9c9c;
@@ -210,13 +201,9 @@
     --button-bg-color: #34AF6D;
     --button-text-color: #fff;
     }
-    
-    /* root */
-    
     a {
     color: inherit;
     }
-    
     a:hover {
     color: var(--button-bg-color);
     }
@@ -228,13 +215,10 @@
     align-items: center;
     justify-content: center;
     margin-top: 16px;
-    }
-    
+    } 
     .uppercase {
     text-transform: uppercase;
     }
-    
-    /* button */
     .btn {
     display: inline-block;
     background: transparent;
@@ -246,7 +230,6 @@
     transition: all 200ms ease-in;
     cursor: pointer;
     }
-    
     .btn--primary {
     background: var(--button-bg-color);
     color: var(--button-text-color);
@@ -259,17 +242,14 @@
     background: darken(var(--button-bg-color), 4%);
     color: #000;
     }
-    
+
     .btn--primary:active {
     background: var(--button-bg-color);
     box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, 0.2);
     }
-    
     .btn--inside {
     margin-left: -86px;
     }
-    
-    /* form */
     .form__field {
     width: 320px;
     background: var(--input-bg-color);
@@ -279,4 +259,54 @@
     border: 0;
     outline: 0;
     padding: 14px 14px;
+}
+.col-1{
+    border: 1px #fff  solid; 
+    margin-top: 14px; 
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+     height: 500px;
+}
+.col-2{
+    margin-left:30px;
+    border: 1px #fff  solid;
+    margin-top: 14px; 
+    padding-bottom: 20px; 
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.btn-block {
+    display: block;
+    margin-top: 16px;
+}
+.btn-success {
+    color: #fff;
+    background-color: #34AF6D !important;
+    border-color: #41c880;
+}
+.btn-create {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 7px 20px;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;font-family: inherit;
+}
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+.btn-success:hover {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+    cursor: pointer;
+}
+.btn:focus, .btn:hover {
+    text-decoration: none;
 }
