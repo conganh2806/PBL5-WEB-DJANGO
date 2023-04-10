@@ -280,9 +280,8 @@
 /* PC medium resolution > */
 @media (min-width: 1113px) {
     .row {
-        margin-left: 30px;
-        margin-right: -30px;
-        margin-top: 40px;
+        margin-top: 10px;
+        margin-left: 10px;
     }
 
     .row.sm-gutter {
@@ -327,13 +326,13 @@
     }
 
     .l-2 {
-        flex: 0 0 16.66667%;
-        max-width: 16.66667%;
+        flex: 0 0 16%;
+        max-width: 16%;
     }
 
     .l-2-4 {
-        flex: 0 0 20%;
-        max-width: 20%;
+        flex: 0 0 22%;
+        max-width: 22%;
     }
 
     .l-3 {
