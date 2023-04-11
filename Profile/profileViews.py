@@ -21,3 +21,7 @@ def profile(request):
     return render(request, "Profiles.html")
 
 
+def goToSettingViews(request):
+    return render(request, )
+
+

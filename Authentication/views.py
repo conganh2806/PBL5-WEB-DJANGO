@@ -3,7 +3,6 @@ import pyrebase
 
 
 # Create your views here.
-userId = ""
 config={
     "apiKey": "AIzaSyAq7-ziABaQCTxfeOlMIbv8jvfQk2B7lmQ",
     "authDomain": "pbl5-94125.firebaseapp.com",
@@ -52,15 +51,16 @@ def postSignIn(request):
             request.session['uid'] = userId
             username = database.child('Users').child(userId).child('username').get().val()
             role = database.child('Users').child(userId).child('role').get().val()
-            print("Username:", username)
-            print("role: ", role)
-            context = {'username': username, 'uid': userId}
-            print('Log in!')
+            request.session['username'] = username
+            request.session['email'] = email
+            request.session['role'] = role
+            context = {'username': username, 'email': email}
+            print('Logged in!')
             # Nếu xác thực thành công, chuyển hướng đến trang chính
             if role=='teacher':
                 return render(request, 'Home.html', context)
             else:
-                return render(request, 'Profiles.html')
+                return render(request, 'Profiles.html', context)
                 
             
         except:

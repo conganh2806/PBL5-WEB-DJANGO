@@ -18,19 +18,20 @@ from django.urls import path
 from Authentication import views
 from Setting import settingViews
 from Profile import profileViews
-
+from AddClass import addClassViews
+from HomeApp import homeViews
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.loginSignUp),
-    path('postsignIn/', views.postSignIn),
     path('postsignUp/', views.postSignUp),
-    path('setting/', settingViews.setting, name="setting"),
-    path('profile/', profileViews.profile, name="profile"),
+    path('postsignIn/', views.postSignIn),
+    path('setting/', homeViews.goToSetting, name="setting"),
     path('postUpdate/', settingViews.postUpdate),
-    
+    path('homepage/', settingViews.postCancel, name="homepage"),
+    path('addClass/', homeViews.AddClass, name="addClass"),
     path('', views.logOut, name="log"),
-    
+    path('profile/', profileViews.profile, name="profile"),
     
 ]

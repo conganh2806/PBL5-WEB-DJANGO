@@ -1,7 +1,9 @@
 from django.shortcuts import render
 import pyrebase
 # Create your views here.
-from Authentication import views
+from Profile import profileViews
+from django.contrib.auth.decorators import login_required
+
 
 config={
     "apiKey": "AIzaSyAq7-ziABaQCTxfeOlMIbv8jvfQk2B7lmQ",
@@ -16,27 +18,28 @@ config={
 firebase=pyrebase.initialize_app(config)
 authe = firebase.auth()
 database = firebase.database()
+storage = firebase.storage()
 
 
-
-def setting(request):
-    userId = request.session.get('uid')
-    print(userId)
-    return render(request, 'Setting.html')
 
 def postCancel(request):
-    return render(request,"Home.html") 
+
+    role = request.session['role']
+    print(role)
+    if(role == 'teacher'):
+        return render(request, "Home.html")
+    else:
+        profileViews.profile(request)
+
 
 def postUpdate(request):
     userId = request.session.get('uid')
-    print(userId)
     fullName = request.POST.get("fullName")
-    email = request.POST.get('eMail')
     phone = request.POST.get('phone')
     adress = request.POST.get('Adress')
     School = request.POST.get('School')
     url = request.POST.get('url')
-    data ={"FullName":fullName,"Phone":phone,"Adress":adress,"School":School,"url":url, "email":email}
+    data ={"FullName":fullName,"Phone":phone,"Adress":adress,"School":School,"url":url}
     
  
     database.child("Users").child(userId).update(data)
