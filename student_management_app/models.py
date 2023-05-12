@@ -170,12 +170,20 @@ def create_user_profile(sender,instance,created,**kwargs):
 
 @receiver(post_save,sender=CustomUser)
 def save_user_profile(sender,instance,**kwargs):
-    if instance.user_type==1:
-        instance.adminhod.save()
-    if instance.user_type==2:
-        instance.staffs.save()
-    if instance.user_type==3:
-        instance.students.save()
+    try:
+        if instance.user_type==1:
+            instance.adminhod.save()
+        if instance.user_type==2:
+            instance.staffs.save()
+        if instance.user_type==3:
+            instance.students.save()
+    except:
+        if instance.user_type==1:
+            AdminHOD.objects.create(user=instance)
+        if instance.user_type==2:
+            instance.staffs.save()
+        if instance.user_type==3:
+            instance.students.save()
         
         
 

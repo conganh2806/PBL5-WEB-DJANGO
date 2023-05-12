@@ -138,7 +138,7 @@
               </p>
             </a>
           </li>
-           <li class="nav-item">
+          {% comment %} <li class="nav-item">
                {% url 'student_leave_view' as student_leave_view %}
             <a href="{% url 'student_leave_view' %}" class="nav-link {% if request.path == student_leave_view %} active {% endif %}">
               <i class="nav-icon fas fa-th"></i>
@@ -155,7 +155,7 @@
                 Staff Leave
               </p>
             </a>
-          </li>
+          </li> {% endcomment %}
           <li class="nav-item">
             {% url 'admin_view_attendance' as admin_view_attendance %}
              <a href="{% url 'admin_view_attendance' %}" class="nav-link {% if request.path == admin_view_attendance %} active {% endif %}">
