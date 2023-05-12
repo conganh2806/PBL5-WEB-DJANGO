@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 import pyrebase
 
 from student_management_app.models import Students, Courses, Subjects, CustomUser, Attendance, AttendanceReport, \
-    LeaveReportStudent, NotificationStudent, StudentResult, OnlineClassRoom, SessionYearModel
+    LeaveReportStudent, FeedBackStudent, NotificationStudent, StudentResult, OnlineClassRoom, SessionYearModel
 
 def student_home(request):
     student_obj=Students.objects.get(admin=request.user.id)
@@ -103,6 +103,27 @@ def student_apply_leave_save(request):
             messages.error(request, "Failed To Apply for Leave")
             return HttpResponseRedirect(reverse("student_apply_leave"))
 
+
+def student_feedback(request):
+    staff_id=Students.objects.get(admin=request.user.id)
+    feedback_data=FeedBackStudent.objects.filter(student_id=staff_id)
+    return render(request,"student_template/student_feedback.html",{"feedback_data":feedback_data})
+
+def student_feedback_save(request):
+    if request.method!="POST":
+        return HttpResponseRedirect(reverse("student_feedback"))
+    else:
+        feedback_msg=request.POST.get("feedback_msg")
+
+        student_obj=Students.objects.get(admin=request.user.id)
+        try:
+            feedback=FeedBackStudent(student_id=student_obj,feedback=feedback_msg,feedback_reply="")
+            feedback.save()
+            messages.success(request, "Successfully Sent Feedback")
+            return HttpResponseRedirect(reverse("student_feedback"))
+        except:
+            messages.error(request, "Failed To Send Feedback")
+            return HttpResponseRedirect(reverse("student_feedback"))
 
 def student_profile(request):
     user=CustomUser.objects.get(id=request.user.id)
