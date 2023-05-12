@@ -328,10 +328,22 @@ def edit_subject_save(request):
             messages.error(request,"Failed to Edit Subject")
             return HttpResponseRedirect(reverse("edit_subject",kwargs={"subject_id":subject_id}))
 
+def del_subject(request, subject_id):
+    subject=Subjects.objects.get(id=subject_id)
+    subject.delete()
+    messages.success(request, "Successfully delete subject")
+    return HttpResponseRedirect(reverse("manage_subject"))
+
 
 def edit_course(request,course_id):
     course=Courses.objects.get(id=course_id)
     return render(request,"hod_template/edit_course_template.html",{"course":course,"id":course_id})
+
+
+def del_course(request,course_id):
+    course=Courses.objects.get(id=course_id)
+    course.delete()
+    return HttpResponseRedirect(reverse("manage_course"))
 
 def edit_course_save(request):
     if request.method!="POST":
@@ -533,13 +545,19 @@ def send_staff_notification(request):
     print(data.text)
     return HttpResponse("True")
 
-def kick_student(student_id):
+def kick_student(request, student_id):
     # student=Students.objects.get(admin=student_id)
     # student.admin.delete()
-    return HttpResponseRedirect(reverse("manage_student"))
+    student = CustomUser.objects.get(id=student_id)
+    student.delete()
+    messages.success(request, "Del staff")
+    return HttpResponseRedirect(reverse("manage_staff"))
 
 
-def kick_staff(staff_id):
+def kick_staff(request, staff_id):
     # staff=Staffs.objects.get(admin=staff_id)
     # staff.admin.delete()
+    staff = CustomUser.objects.get(id=staff_id)
+    staff.delete()
+    messages.success(request, "Del staff")
     return HttpResponseRedirect(reverse("manage_staff"))
