@@ -113,21 +113,8 @@
               </p>
             </a>
           </li>
-<<<<<<< HEAD
            
           <li class="nav-item" style="margin-bottom: 6px;">
-=======
-           <li class="nav-item">
-            {% url 'student_feedback' as student_feedback %}
-            <a href="{{ student_feedback }}" class="nav-link {% if request.path == student_feedback %} active {% endif %}">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Feedback Message
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
->>>>>>> 076d03828a1f357ca3013d2823532e2ff63dce4b
             {% url 'student_view_result' as student_view_result %}
             <a href="{{ student_view_result }}" class="nav-link {% if request.path == student_view_result %} active {% endif %}">
               <i class="nav-icon fa fa-tasks" aria-hidden="true"></i>
