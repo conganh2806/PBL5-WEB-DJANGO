@@ -11,7 +11,7 @@ from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 
 from student_management_app.models import Subjects, SessionYearModel, Students, Attendance, AttendanceReport, \
-    LeaveReportStaff, Staffs, FeedBackStaffs, CustomUser, Courses, NotificationStaffs, StudentResult, OnlineClassRoom
+    LeaveReportStaff, Staffs, CustomUser, Courses, NotificationStaffs, StudentResult, OnlineClassRoom
 
 
 def staff_home(request):
@@ -176,28 +176,6 @@ def staff_apply_leave_save(request):
         except:
             messages.error(request, "Failed To Apply for Leave")
             return HttpResponseRedirect(reverse("staff_apply_leave"))
-
-
-def staff_feedback(request):
-    staff_id=Staffs.objects.get(admin=request.user.id)
-    feedback_data=FeedBackStaffs.objects.filter(staff_id=staff_id)
-    return render(request,"staff_template/staff_feedback.html",{"feedback_data":feedback_data})
-
-def staff_feedback_save(request):
-    if request.method!="POST":
-        return HttpResponseRedirect(reverse("staff_feedback_save"))
-    else:
-        feedback_msg=request.POST.get("feedback_msg")
-
-        staff_obj=Staffs.objects.get(admin=request.user.id)
-        try:
-            feedback=FeedBackStaffs(staff_id=staff_obj,feedback=feedback_msg,feedback_reply="")
-            feedback.save()
-            messages.success(request, "Successfully Sent Feedback")
-            return HttpResponseRedirect(reverse("staff_feedback"))
-        except:
-            messages.error(request, "Failed To Send Feedback")
-            return HttpResponseRedirect(reverse("staff_feedback"))
 
 def staff_profile(request):
     user=CustomUser.objects.get(id=request.user.id)
