@@ -11,7 +11,7 @@ from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 
 from student_management_app.models import Subjects, SessionYearModel, Students, Attendance, AttendanceReport, \
-    LeaveReportStaff, Staffs, FeedBackStaffs, CustomUser, Courses, NotificationStaffs, StudentResult, OnlineClassRoom
+     Staffs, FeedBackStaffs, CustomUser, Courses, NotificationStaffs, StudentResult, OnlineClassRoom
 
 
 def staff_home(request):
@@ -35,7 +35,7 @@ def staff_home(request):
 
     #Fetch All Approve Leave
     staff=Staffs.objects.get(admin=request.user.id)
-    leave_count=LeaveReportStaff.objects.filter(staff_id=staff.id,leave_status=1).count()
+    #leave_count=LeaveReportStaff.objects.filter(staff_id=staff.id,leave_status=1).count()
     subject_count=subjects.count()
 
     #Fetch Attendance Data by Subject
@@ -57,7 +57,7 @@ def staff_home(request):
         student_list_attendance_present.append(attendance_present_count)
         student_list_attendance_absent.append(attendance_absent_count)
 
-    return render(request,"staff_template/staff_home_template.html",{"students_count":students_count,"attendance_count":attendance_count,"leave_count":leave_count,"subject_count":subject_count,"subject_list":subject_list,"attendance_list":attendance_list,"student_list":student_list,"present_list":student_list_attendance_present,"absent_list":student_list_attendance_absent})
+    return render(request,"staff_template/staff_home_template.html",{"students_count":students_count,"attendance_count":attendance_count,"subject_count":subject_count,"subject_list":subject_list,"attendance_list":attendance_list,"student_list":student_list,"present_list":student_list_attendance_present,"absent_list":student_list_attendance_absent})
 
 def staff_take_attendance(request):
     subjects=Subjects.objects.filter(staff_id=request.user.id)
@@ -155,27 +155,27 @@ def save_updateattendance_data(request):
     except:
         return HttpResponse("ERR")
 
-def staff_apply_leave(request):
-    staff_obj = Staffs.objects.get(admin=request.user.id)
-    leave_data=LeaveReportStaff.objects.filter(staff_id=staff_obj)
-    return render(request,"staff_template/staff_apply_leave.html",{"leave_data":leave_data})
+# def staff_apply_leave(request):
+#     staff_obj = Staffs.objects.get(admin=request.user.id)
+#     leave_data=LeaveReportStaff.objects.filter(staff_id=staff_obj)
+#     return render(request,"staff_template/staff_apply_leave.html",{"leave_data":leave_data})
 
-def staff_apply_leave_save(request):
-    if request.method!="POST":
-        return HttpResponseRedirect(reverse("staff_apply_leave"))
-    else:
-        leave_date=request.POST.get("leave_date")
-        leave_msg=request.POST.get("leave_msg")
+# def staff_apply_leave_save(request):
+#     if request.method!="POST":
+#         return HttpResponseRedirect(reverse("staff_apply_leave"))
+#     else:
+#         leave_date=request.POST.get("leave_date")
+#         leave_msg=request.POST.get("leave_msg")
 
-        staff_obj=Staffs.objects.get(admin=request.user.id)
-        try:
-            leave_report=LeaveReportStaff(staff_id=staff_obj,leave_date=leave_date,leave_message=leave_msg,leave_status=0)
-            leave_report.save()
-            messages.success(request, "Successfully Applied for Leave")
-            return HttpResponseRedirect(reverse("staff_apply_leave"))
-        except:
-            messages.error(request, "Failed To Apply for Leave")
-            return HttpResponseRedirect(reverse("staff_apply_leave"))
+#         staff_obj=Staffs.objects.get(admin=request.user.id)
+#         try:
+#             leave_report=LeaveReportStaff(staff_id=staff_obj,leave_date=leave_date,leave_message=leave_msg,leave_status=0)
+#             leave_report.save()
+#             messages.success(request, "Successfully Applied for Leave")
+#             return HttpResponseRedirect(reverse("staff_apply_leave"))
+#         except:
+#             messages.error(request, "Failed To Apply for Leave")
+#             return HttpResponseRedirect(reverse("staff_apply_leave"))
 
 
 def staff_feedback(request):

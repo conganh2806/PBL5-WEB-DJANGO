@@ -32,7 +32,7 @@ Result
                             <td>{{ row.subject_assignment_marks }}</td>
                             <td>{{ row.subject_exam_marks }}</td>
                             <td>
-                                {% if row.subject_exam_marks >= 40 %}
+                                {% if row.subject_exam_marks >= 4 %}
                                 <span class="alert alert-success">PASS</span>
                                 {% else %}
                                  <span class="alert alert-danger">FAIL</span>

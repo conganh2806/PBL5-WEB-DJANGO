@@ -65,6 +65,7 @@ ROOT_URLCONF = 'student_management_system.urls'
 
 TEMPLATES = [
     {
+        
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': ['student_management_app/templates'],
         'APP_DIRS': True,
@@ -76,6 +77,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
         },
+        
     },
 ]
 
