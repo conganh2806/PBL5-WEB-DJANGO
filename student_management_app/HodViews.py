@@ -48,9 +48,9 @@ def admin_home(request):
     for staff in staffs:
         subject_ids=Subjects.objects.filter(staff_id=staff.admin.id)
         attendance=Attendance.objects.filter(subject_id__in=subject_ids).count()
-        leaves=LeaveReportStaff.objects.filter(staff_id=staff.id,leave_status=1).count()
+        #leaves=LeaveReportStaff.objects.filter(staff_id=staff.id,leave_status=1).count()
         attendance_present_list_staff.append(attendance)
-        attendance_absent_list_staff.append(leaves)
+        #attendance_absent_list_staff.append(leaves)
         staff_name_list.append(staff.admin.username)
 
     students_all=Students.objects.all()
