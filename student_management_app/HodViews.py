@@ -60,9 +60,7 @@ def admin_home(request):
     for student in students_all:
         attendance=AttendanceReport.objects.filter(student_id=student.id,status=True).count()
         absent=AttendanceReport.objects.filter(student_id=student.id,status=False).count()
-        #leaves=LeaveReportStudent.objects.filter(student_id=student.id,leave_status=1).count()
         attendance_present_list_student.append(attendance)
-        #attendance_absent_list_student.append(leaves+absent)
         attendance_absent_list_student.append(absent)
         student_name_list.append(student.admin.username)
 
@@ -436,40 +434,6 @@ def staff_feedback_message_replied(request):
         return HttpResponse("True")
     except:
         return HttpResponse("False")
-
-# def staff_leave_view(request):
-#     leaves=LeaveReportStaff.objects.all()
-#     return render(request,"hod_template/staff_leave_view.html",{"leaves":leaves})
-
-# def student_leave_view(request):
-#     leaves=LeaveReportStudent.objects.all()
-#     return render(request,"hod_template/student_leave_view.html",{"leaves":leaves})
-
-# def student_approve_leave(request,leave_id):
-#     leave=LeaveReportStudent.objects.get(id=leave_id)
-#     leave.leave_status=1
-#     leave.save()
-#     return HttpResponseRedirect(reverse("student_leave_view"))
-
-# def student_disapprove_leave(request,leave_id):
-#     leave=LeaveReportStudent.objects.get(id=leave_id)
-#     leave.leave_status=2
-#     leave.save()
-#     return HttpResponseRedirect(reverse("student_leave_view"))
-
-
-# def staff_approve_leave(request,leave_id):
-#     leave=LeaveReportStaff.objects.get(id=leave_id)
-#     leave.leave_status=1
-#     leave.save()
-#     return HttpResponseRedirect(reverse("staff_leave_view"))
-
-# def staff_disapprove_leave(request,leave_id):
-#     leave=LeaveReportStaff.objects.get(id=leave_id)
-#     leave.leave_status=2
-#     leave.save()
-#     return HttpResponseRedirect(reverse("staff_leave_view"))
-
 def admin_view_attendance(request):
     subjects=Subjects.objects.all()
     session_year_id=SessionYearModel.object.all()
@@ -582,8 +546,6 @@ def send_staff_notification(request):
     return HttpResponse("True")
 
 def kick_student(request, student_id):
-    # student=Students.objects.get(admin=student_id)
-    # student.admin.delete()
     student = CustomUser.objects.get(id=student_id)
     student.delete()
     messages.success(request, "Del staff")
@@ -591,8 +553,6 @@ def kick_student(request, student_id):
 
 
 def kick_staff(request, staff_id):
-    # staff=Staffs.objects.get(admin=staff_id)
-    # staff.admin.delete()
     staff = CustomUser.objects.get(id=staff_id)
     staff.delete()
     messages.success(request, "Del staff")
