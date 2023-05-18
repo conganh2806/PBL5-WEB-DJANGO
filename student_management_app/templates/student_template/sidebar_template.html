@@ -104,6 +104,15 @@
               </p>
             </a>
           </li>
+          <li class="nav-item" style="margin-bottom: 6px;  padding-right: 30px">
+            {% url 'view_subject' as view_subject %}
+            <a href="{% url 'view_subject' %}" class="nav-link {% if request.path == view_subject %} active {% endif %} ">
+              <i class="nav-icon fa fa-cog" aria-hidden="true"></i>
+              <p>
+                View Subject
+              </p>
+            </a>
+          </li>
            {% comment %} <li class="nav-item" style="margin-bottom: 6px;">
             {% url 'student_apply_leave' as student_apply_leave %}
             <a href="{{ student_apply_leave }}" class="nav-link {% if request.path == student_apply_leave %} active {% endif %}">
@@ -132,7 +141,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item" style="margin-bottom: 6px;">
+          {% comment %} <li class="nav-item" style="margin-bottom: 6px;">
             {% url 'student_attendance_status' as student_attendance_status %}
             <a href="{{ student_attendance_status }}" class="nav-link {% if request.path == student_attendance_status %} active {% endif %}">
               <i class="nav-icon fa fa-folder-open" aria-hidden="true"></i>
@@ -140,7 +149,7 @@
                 Check Attendance Status
               </p>
             </a>
-          </li>
+          </li> {% endcomment %}
 
         </ul>
           </div>
