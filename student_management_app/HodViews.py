@@ -340,11 +340,6 @@ def edit_course(request,course_id):
     return render(request,"hod_template/edit_course_template.html",{"course":course,"id":course_id})
 
 
-def del_course(request,course_id):
-    course=Courses.objects.get(id=course_id)
-    course.delete()
-    return HttpResponseRedirect(reverse("manage_course"))
-
 def edit_course_save(request):
     if request.method!="POST":
         return HttpResponse("<h2>Method Not Allowed</h2>")
@@ -549,7 +544,7 @@ def kick_student(request, student_id):
     student = CustomUser.objects.get(id=student_id)
     student.delete()
     messages.success(request, "Del staff")
-    return HttpResponseRedirect(reverse("manage_staff"))
+    return HttpResponseRedirect(reverse("manage_student"))
 
 
 def kick_staff(request, staff_id):
