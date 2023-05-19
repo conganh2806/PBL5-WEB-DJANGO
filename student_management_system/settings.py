@@ -29,14 +29,20 @@ DEBUG = False
 ALLOWED_HOSTS = ["*"]
 
 MEDIA_URL="/media/"
-MEDIA_ROOT=os.path.join(BASE_DIR,"media")
+
 
 STATIC_URL="/static/"
-STATIC_ROOT=os.path.join(BASE_DIR,"static")
 
+if DEBUG:
+    STATICFILES_DIRS= [os.path.join(BASE_DIR,"static")]
+else:
+    STATIC_ROOT=os.path.join(BASE_DIR,"static")
+
+MEDIA_ROOT= os.path.join(BASE_DIR,"media")
 # Application definition
 
 INSTALLED_APPS = [
+    #'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,6 +55,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    #'whitenoise.middleware.WhiteNoiseMiddleWare',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
